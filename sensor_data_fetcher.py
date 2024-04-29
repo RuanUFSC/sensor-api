@@ -15,10 +15,7 @@ async def store_sensor_data(sensor_id, repository):
     while True:
         data = await fetch_sensor_data(sensor_id)
         data_value = data['data']  # Acessando a propriedade 'data'
-        
-        print(data_value)
-        timestamp = datetime.now()  # Capturando o timestamp atual
-        
+        timestamp = datetime.now()  # Capturando o timestamp atual        
         sensor_data = SensorDataDB(sensor_id=sensor_id, data=data_value, timestamp=timestamp)
         await repository.insert_sensor_data(sensor_data)
         await asyncio.sleep(0.3)

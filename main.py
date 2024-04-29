@@ -44,7 +44,7 @@ async def _handle_websocket(websocket: WebSocket, sensor_id: int = None):
             else:
                 all_sensor_data = await repository.get_last_50_sensor_data()
                 await websocket.send_json(all_sensor_data)
-            await asyncio.sleep(0.3)
+            await asyncio.sleep(3000)
     finally:
         await close_mongo_connection(db_client)
         
@@ -53,10 +53,10 @@ async def run_sensor_data_fetcher():
 
 if __name__ == "__main__":
     # Iniciar a API Flask como um processo separado
-    flask_process = subprocess.Popen(["python", "app.py"])
+    # flask_process = subprocess.Popen(["python", "app.py"])
 
     # Iniciar o sensor_data_fetcher
-    asyncio.run(run_sensor_data_fetcher())
+    # asyncio.run(run_sensor_data_fetcher())
 
     # Iniciar o servidor FastAPI
     uvicorn.run(app, host="0.0.0.0", port=8000)

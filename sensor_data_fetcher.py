@@ -7,7 +7,7 @@ from models import SensorDataDB
         
 async def fetch_sensor_data(sensor_id):
     async with aiohttp.ClientSession() as session:
-        async with session.get(f'http://127.0.0.1:5000/api/v1/sensors?name=sensor{sensor_id}') as response:
+        async with session.get(f'http://localhost:5000/api/v1/sensors?name=sensor{sensor_id}') as response:
             data = await response.json()
             return data
 

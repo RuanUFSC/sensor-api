@@ -44,7 +44,7 @@ async def _handle_websocket(websocket: WebSocket, sensor_id: int = None):
             else:
                 all_sensor_data = await repository.get_last_50_sensor_data()
                 await websocket.send_json(all_sensor_data)
-            await asyncio.sleep(3000)
+            await asyncio.sleep(3)
     finally:
         await close_mongo_connection(db_client)
         
